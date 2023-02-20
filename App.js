@@ -31,6 +31,7 @@ function Box(props) {
 }
 
 function Shoe(props) {
+  const mesh = useRef();
   const [base, normal, rough] = useLoader(TextureLoader, [
     require('./assets/Airmax/textures/BaseColor.jpg'),
     require('./assets/Airmax/textures/Normal.jpg'),
@@ -43,11 +44,6 @@ function Shoe(props) {
     loader.setMaterials(material);
   });
 
-  // React Native Reanimated Expo
-  const animatedSensor = useAnimatedSensor(SensorType.GYROSCOPE, {
-    interval: 100,
-  });
-
   useLayoutEffect(() => {
     obj.traverse((child) => {
       if(child instanceof THREE.Mesh) {
@@ -58,8 +54,16 @@ function Shoe(props) {
     });
   }, [obj]);
 
+  useFrame((state, delta) => {
+    let { x, y, z } = props.animatedSensor.sensor.value;
+    x = ~~(x * 100) / 5000;
+    y = ~~(y * 100) / 5000;
+    mesh.current.rotation.x += x;
+    mesh.current.rotation.y += y;
+  });
+
   return (
-    <mesh rotation={[1, 0, 0]} {...props}>
+    <mesh ref={mesh} rotation={[0.7, 0, 0]} {...props}>
       <primitive object={obj} scale={10} />
     </mesh>
   )
@@ -74,13 +78,17 @@ export const Loading = () => {
 }
 
 export default function App() {
+  // React Native Reanimated Expo
+  const animatedSensor = useAnimatedSensor(SensorType.GYROSCOPE, {
+    interval: 100,
+  });
   return (
     <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
 
       <Suspense fallback={null}>
-        <Shoe />
+        <Shoe animatedSensor={animatedSensor} />
       </Suspense>
 
       {/*<Box />*/}

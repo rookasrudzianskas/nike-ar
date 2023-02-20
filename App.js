@@ -1,6 +1,8 @@
-import {useRef, useState} from "react";
+import {Suspense, useRef, useState} from "react";
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import {ActivityIndicator, View} from "react-native";
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 
 function Box(props) {
   const [active, setActive] = useState(false);
@@ -27,12 +29,22 @@ function Box(props) {
 }
 
 function Shoe(props) {
+  const material = useLoader(MTLLoader, require('./assets/Airmax/shoe.mtl'));
   const obj = useLoader(OBJLoader, require('./assets/Airmax/shoe.obj'));
 
+
   return (
-    <mesh {...props}>
-      <primitive object={obj} />
+    <mesh rotation={[1, 0, 0]} {...props}>
+      <primitive object={obj} scale={10} />
     </mesh>
+  )
+}
+
+export const Loading = () => {
+  return (
+    <View className="h-screen items-center justify-center">
+      <ActivityIndicator size="large" color="#0000ff" />
+    </View>
   )
 }
 
@@ -42,7 +54,9 @@ export default function App() {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
 
-      <Shoe />
+      <Suspense fallback={null}>
+        <Shoe />
+      </Suspense>
 
       {/*<Box />*/}
       {/*<Box position={[0, 2, 0]} />*/}

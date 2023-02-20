@@ -1,5 +1,6 @@
-import {Canvas, useFrame} from '@react-three/fiber';
 import {useRef, useState} from "react";
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 function Box(props) {
   const [active, setActive] = useState(false);
@@ -26,6 +27,8 @@ function Box(props) {
 }
 
 function Shoe(props) {
+  const obj = useLoader(OBJLoader, require('./assets/Airmax/shoe.obj'));
+
   return (
     <mesh {...props}>
 

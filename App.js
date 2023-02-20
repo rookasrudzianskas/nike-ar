@@ -87,7 +87,7 @@ export default function App() {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
 
-      <Suspense fallback={null}>
+      <Suspense fallback={<Loading />}>
         <Shoe animatedSensor={animatedSensor} />
       </Suspense>
 

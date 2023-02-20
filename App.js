@@ -6,9 +6,10 @@ function Box(props) {
   const mesh = useRef();
 
   useFrame((state, delta) => {
-    return (
-      mesh.current.rotation.y += delta
-    )
+    if(active) {
+      mesh.current.rotation.y += delta;
+      mesh.current.rotation.x += delta;
+    }
   })
 
   return (

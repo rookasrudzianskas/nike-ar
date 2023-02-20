@@ -69,7 +69,7 @@ function Shoe(props) {
   )
 }
 
-export const Loading = () => {
+const Loading = () => {
   return (
     <View className="h-screen items-center justify-center">
       <ActivityIndicator size="large" color="#0000ff" />
@@ -87,7 +87,7 @@ export default function App() {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
 
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={null}>
         <Shoe animatedSensor={animatedSensor} />
       </Suspense>
 

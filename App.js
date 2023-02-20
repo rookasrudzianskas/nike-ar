@@ -9,6 +9,11 @@ export default function App() {
         <sphereGeometry />
         <meshStandardMaterial color="orange" />
       </mesh>
+
+      <mesh position={[-1, -1, 0]} scale={0.1}>
+        <torusKnotGeometry args={[10, 3, 1000, 16]} />
+        <meshStandardMaterial color="green" />
+      </mesh>
     </Canvas>
   );
 }

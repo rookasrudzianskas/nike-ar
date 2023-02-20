@@ -31,7 +31,7 @@ function Shoe(props) {
 
   return (
     <mesh {...props}>
-
+      <primitive object={obj} />
     </mesh>
   )
 }

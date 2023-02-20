@@ -26,3 +26,5 @@ MIT
 [npm-url]: https://npmjs.org/package/react-native-expo-three
 [travis-image]: https://img.shields.io/travis/ExpoThree/react-native-expo-three.svg?style=flat-square
 [travis-url]: https://travis-ci.org/ExpoThree/react-native-expo-three
+
+The build will be in the playstore and App Store soon. I will update the readme with the links when it is done.

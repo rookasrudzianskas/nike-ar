@@ -42,7 +42,6 @@ function Shoe(props) {
     loader.setMaterials(material);
   });
 
-
   useLayoutEffect(() => {
     obj.traverse((child) => {
       if(child instanceof THREE.Mesh) {
@@ -50,9 +49,8 @@ function Shoe(props) {
         child.material.normalMap = normal;
         child.material.roughnessMap = rough;
       }
-    })
+    });
   }, [obj]);
-
 
   return (
     <mesh rotation={[1, 0, 0]} {...props}>

@@ -1,10 +1,17 @@
 import { Canvas } from '@react-three/fiber';
+import {useState} from "react";
 
 function Box(props) {
+  const [active, setActive] = useState(false);
+
   return (
-    <mesh {...props}>
+    <mesh
+      {...props}
+      onClick={(e) => setActive(!active)}
+      scale={active ? 1.5 : 1}
+    >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="orange" />
+      <meshStandardMaterial color={active ? 'green' : 'pink'} />
     </mesh>
   )
 }

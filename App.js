@@ -11,7 +11,7 @@ export default function App() {
       </mesh>
 
       <mesh position={[-1, -1, 0]} scale={0.1}>
-        <torusKnotGeometry args={[10, 3, 1000, 16]} />
+        <torusKnotGeometry radius={10} args={[10, 1, 260, 6, 10, 16]} />
         <meshStandardMaterial color="green" />
       </mesh>
     </Canvas>

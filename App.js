@@ -4,6 +4,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import {ActivityIndicator, View} from "react-native";
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
 import { TextureLoader } from 'expo-three';
+import { useAnimatedSensor, SensorType } from 'react-native-reanimated';
 
 function Box(props) {
   const [active, setActive] = useState(false);
@@ -40,6 +41,11 @@ function Shoe(props) {
   const obj = useLoader(OBJLoader, require('./assets/Airmax/shoe.obj'), (loader) => {
     material.preload();
     loader.setMaterials(material);
+  });
+
+  // React Native Reanimated Expo
+  const animatedSensor = useAnimatedSensor(SensorType.GYROSCOPE, {
+    interval: 100,
   });
 
   useLayoutEffect(() => {

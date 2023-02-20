@@ -25,14 +25,25 @@ function Box(props) {
   )
 }
 
+function Shoe(props) {
+  return (
+    <mesh {...props}>
+
+    </mesh>
+  )
+}
+
 export default function App() {
   return (
     <Canvas>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Box />
-      <Box position={[0, 2, 0]} />
-      <Box position={[0, -2, 0]} />
+
+      <Shoe />
+
+      {/*<Box />*/}
+      {/*<Box position={[0, 2, 0]} />*/}
+      {/*<Box position={[0, -2, 0]} />*/}
     </Canvas>
   );
 }
